@@ -13,7 +13,7 @@
 
 ## 포함하지 않은 것
 
-- 윤의 로컬 `.codex/knowledge-loop` 작업 기록
+- 개발자의 로컬 `.codex/knowledge-loop` 작업 기록
 - BEAI Harness 내부 작업 로그
 - 공개 릴리즈 선언
 - 고객/계정/돈/계약/법률 관련 자동화
