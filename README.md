@@ -14,7 +14,7 @@ Core principle:
 
 ## What This Is
 
-This is a public preview distribution package for people who want to test the BEAI Knowledge Loop pattern with Codex.
+This is a production-candidate distribution package for people who want to test the BEAI Knowledge Loop pattern with Codex.
 
 It helps Codex:
 
@@ -22,42 +22,45 @@ It helps Codex:
 - capture review-only draft knowledge after work
 - keep reusable traps, decisions, evidence, and next actions from disappearing
 - avoid uncontrolled durable memory writes
+- verify plugin install-root MCP paths before use
 
-Think of it as an AI worker's worklog and handoff system, not just an AI-readable wiki.
+Think of it as an AI worker’s worklog and handoff system, not just an AI-readable wiki.
 
 ## What This Is Not
 
 This is not:
 
-- a customer-ready commercial installer
 - an automatic durable memory writer
 - an external publishing or sending tool
 - an automation/cron/hook activation package
 - a legal, payment, contract, account, or deployment automation
+- a replacement for human review before approved knowledge promotion
 
 Human approval is still required for approved knowledge promotion, external actions, public posting, release claims, and consequential operations.
 
-## Why It Matters
+## Production Hardening in 0.1.1
 
-Most AI memory discussions focus on giving the model more context.
+This candidate adds:
 
-BEAI Knowledge Loop focuses on a different question:
-
-> How do humans keep ownership of judgment while AI work becomes reusable organizational knowledge?
-
-That difference matters for Codex, Claude Code, Cursor, and any LLM-based work agent. Better agents do not remove the need for review boundaries. They make those boundaries more important.
+- draft id path traversal rejection
+- workspace/store containment checks
+- retrieval eval path containment
+- smoke tests that run in temporary workspaces instead of polluting source
+- install-root MCP path verification
+- self-contained package hygiene command
+- local absolute path cleanup in packaged docs
 
 ## Package
 
 Current package:
 
-- `beai-knowledge-loop-for-codex-team-install-20260701-2246.zip`
-- `beai-knowledge-loop-for-codex-team-install-20260701-2246.sha256`
+- `beai-knowledge-loop-for-codex-team-install-20260702-234218.zip`
+- `beai-knowledge-loop-for-codex-team-install-20260702-234218.sha256`
 
 SHA-256:
 
 ```text
-1ee5799fae804c00d17a5fbf23f899966b1e7205698ca580d33becc5bf480e86
+ee11d746ff2a4753121561fd13f560bf682ac0a6f67f38a64bdf7dab7ef312a9
 ```
 
 ## Install
@@ -65,7 +68,7 @@ SHA-256:
 1. Download the zip file.
 2. Unzip it into a normal local folder.
 3. Run `설치.command` inside the unzipped folder.
-4. Restart the Codex app.
+4. Restart the Codex app completely.
 5. Open Plugins and install `BEAI Knowledge Loop for Codex` from `BEAI Team Local`.
 6. Start a fresh Codex thread.
 
@@ -77,21 +80,23 @@ See:
 
 The package was checked before upload:
 
+- `npm run verify` passed
+- Node scenario tests: 6 passed
+- path traversal hardening test passed
+- eval path containment test passed
+- smoke test passed in temporary workspace
+- install-root MCP path verification passed on an unpacked copy
 - `zip -T` passed
 - package hygiene passed
 - no developer-machine local absolute path was found in the staging package
 - no `.beai-harness` internal work log was included
 - no `.codex/knowledge-loop`, `drafts`, `review-queue`, or `generated` store folders were included
-- MCP server syntax check passed
-- plugin manifest sanity check passed
-- source project `npm run verify` passed
-- BEAI verify and closeout passed
 
 ## Current Status
 
-Status: public preview / team install candidate.
+Status: production-candidate / team install package.
 
-Next validation: a teammate should install this package in their own Codex app and confirm that the plugin and MCP tools become visible in a fresh thread.
+Stable release still requires real teammate install feedback and external user validation.
 
 ## Copyright
 

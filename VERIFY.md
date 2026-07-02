@@ -3,67 +3,13 @@
 Package:
 
 ```text
-beai-knowledge-loop-for-codex-team-install-20260701-2246.zip
+beai-knowledge-loop-for-codex-team-install-20260702-234218.zip
 ```
 
-## Archive Integrity
-
-Command:
-
-```bash
-zip -T dist/beai-knowledge-loop-for-codex-team-install-20260701-2246.zip
-```
-
-Result:
+SHA-256:
 
 ```text
-OK
-```
-
-## Package Hygiene
-
-Checked that the archive does not include:
-
-- `.beai-harness`
-- `.codex/knowledge-loop`
-- `review-queue`
-- `drafts`
-- `generated`
-
-Result:
-
-```text
-passed
-```
-
-## Local Path Hygiene
-
-Checked staging package for local-only paths and diagnostic references:
-
-- developer-machine absolute paths
-- `codex-marketplace-release`
-- `codex-marketplace`
-- diagnostic direct MCP naming
-
-Result:
-
-```text
-no matches
-```
-
-## Plugin Manifest Sanity
-
-Checked:
-
-- plugin name
-- version
-- defaultPrompt array shape
-- `beaiKnowledgeLoop` MCP server presence
-
-Result:
-
-```text
-passed
+ee11d746ff2a4753121561fd13f560bf682ac0a6f67f38a64bdf7dab7ef312a9
 ```
 
 ## Source Project Verification
@@ -71,7 +17,8 @@ passed
 Command:
 
 ```bash
-npm --prefix work/beai-knowledge-loop-for-codex run verify
+npm run verify
+npm run package:hygiene
 ```
 
 Result:
@@ -92,13 +39,17 @@ Covered:
 - knowledge.promote_plan
 - knowledge.evaluate
 - knowledge.boundaries
+- draft id path traversal rejection
+- retrieval eval path containment
+- source path handling with spaces
+- smoke test in a temporary workspace
 
-## BEAI Verification
+## Install-Root Verification
 
-Command:
+An unpacked copy was patched with `tools/patch-mcp-paths.mjs`, then verified with:
 
 ```bash
-beai verify --run --scenario --meaning
+node scripts/verify-plugin-install-root.js <plugin-root>
 ```
 
 Result:
@@ -107,22 +58,39 @@ Result:
 passed
 ```
 
+This confirms the installed manifest points at an MCP server inside the actual plugin install root.
+
+## Archive Integrity
+
 Command:
 
 ```bash
-beai closeout --apply
+zip -T beai-knowledge-loop-for-codex-team-install-20260702-234218.zip
 ```
 
 Result:
 
 ```text
-ready
+OK
+```
+
+## Package Hygiene
+
+Checked that the archive does not include:
+
+- `.beai-harness`
+- `.codex/knowledge-loop`
+- `review-queue`
+- `drafts`
+- `generated`
+- developer-machine local absolute paths
+
+Result:
+
+```text
+passed
 ```
 
 ## Remaining Validation
 
-This is still an internal team install candidate. A teammate should perform a real install on their own Codex app and confirm:
-
-- `설치.command` completes
-- Codex app restart exposes the plugin
-- a fresh Codex thread can call the BEAI Knowledge Loop MCP tools
+This is a production-candidate team install package. Stable release still requires real teammate install feedback and external user validation.
